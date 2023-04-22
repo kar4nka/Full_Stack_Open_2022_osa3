@@ -30,7 +30,6 @@ app.get('/api/persons/', (request,response) => {
 
 app.get('/api/persons/:id', (request,response) => {
   const id = Number(request.params.id)
-  console.log(id)
   const person = persons.find(person => id === person.id)
 
   if(person){
@@ -60,9 +59,13 @@ app.use(express.json())
 app.post('/api/persons', (request, response) => {
   const body = request.body
 
-  if (!body.name) {
+  if (!body.name || !body.number) {
     return response.status(400).json({ 
       error: 'content missing' 
+    })
+  }else if (persons.filter(person => person.name === body.name).length > 0){
+    return response.status(400).json({
+      error: 'name must be unique'
     })
   }
 
