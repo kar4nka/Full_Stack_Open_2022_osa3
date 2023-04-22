@@ -24,10 +24,16 @@ let persons = [
   }
 ]
 
-
-app.get('/api/persons', (request,response) => {
+app.get('/api/persons/', (request,response) => {
   response.json(persons)
 })
+
+app.get('/api/persons/:id', (request,response) => {
+  let id = Number(request.params.id)
+  console.log(id)
+  response.json(persons.find(person => id === person.id))
+})
+
 
 app.get('/info', (request,response) => {
     response.send(`
