@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const morgan = require('morgan')
 
 let persons = [
   {
@@ -23,6 +24,9 @@ let persons = [
     number: "39-23-6423122"
   }
 ]
+
+app.use(morgan('tiny'))
+app.use(express.json())
 
 app.get('/api/persons/', (request,response) => {
   response.json(persons)
@@ -55,7 +59,6 @@ app.delete('/api/persons/:id', (request,response) => {
 })
 
 
-app.use(express.json())
 app.post('/api/persons', (request, response) => {
   const body = request.body
 
