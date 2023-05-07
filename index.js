@@ -29,10 +29,13 @@ app.get('/api/persons/:id', (request,response, next) => {
 
 
 app.get('/info', (request,response) => {
-  response.send(`
-  <p>Phonebook has info for ${persons.length} people</p>
-  <p>${Date()}</p>
-  `)
+  Person.countDocuments({})
+  .then(result => (
+    response.send(`
+    <p>Phonebook has info for ${result} people</p>
+    <p>${Date()}</p>
+    `))
+  )
 })
 
 
