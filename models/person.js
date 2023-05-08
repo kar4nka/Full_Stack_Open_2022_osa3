@@ -15,7 +15,11 @@ mongoose.connect(url)
   })
 
 const Schema = new mongoose.Schema({
-  name: String,
+  name: {
+    type: String,
+    minlength: 3,
+    required: true
+  },
   number: String
 }, { versionKey: false })
 
@@ -24,7 +28,7 @@ Schema.virtual('id').get(function(){
   return this._id.toHexString();
 });
 
-// Ensure virtual fields are serialised.
+// Ensure virtual fields are serialised and delete _id and __v.
 Schema.set('toJSON', {
   virtuals: true,
   transform: function (doc, ret) {
