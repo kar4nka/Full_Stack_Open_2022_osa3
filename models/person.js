@@ -20,7 +20,17 @@ const Schema = new mongoose.Schema({
     minlength: 3,
     required: true
   },
-  number: String
+  number: {
+    type: String,
+    minlength: 8,
+    required: true,
+    validate: {
+      validator: function(v) {
+        return /^[0-9]{2,3}-[0-9]{5,}$/.test(v);
+      },
+      message: "Not a valid phone number"
+    }
+  }
 }, { versionKey: false })
 
 // Duplicate the ID field.

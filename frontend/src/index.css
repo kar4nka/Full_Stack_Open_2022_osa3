@@ -1,0 +1,14 @@
+.notification {
+    width: 600px;
+    height: 50px;
+    font-size: 1.2em;
+    text-align: center;
+    line-height: 50px;
+    margin: 10px;
+    background-color: rgb(223, 223, 223);
+    border-color: rgb(0, 247, 255);
+    border-style: groove;
+    border-width: 3px;
+    border-radius: 5px;
+    color: rgb(0, 0, 0);
+}
